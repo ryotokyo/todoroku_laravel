@@ -11,7 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    Route::get('/','TodosController@index');
-    Route::resource('task','TaskController');
-});
+//以下をコメントアウトする
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/','TaskController@index');
+Route::resource('task','TaskController');
+Route::post('/complete','TaskController@complete');
+
+
+
