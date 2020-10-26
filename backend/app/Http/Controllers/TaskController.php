@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Task;
+use Illuminate\Support\Facades\Log;
 
 class TaskController extends Controller
 {
@@ -14,6 +15,16 @@ class TaskController extends Controller
     }
 
     public function store(Request $request) {
+      // validation ここから追加
+      $rules = [
+        'title' => 'required'
+      ];
+      $message = [
+        'title.required' => ':attributeを入力してください。'
+      ];
+      $attr = ['title' => 'タスク'];
+      $this->validate($request, $rules, $message, $attr);
+      // ここまで追加
       $task = new Task();
       $task->title = $request->title;
       $task->save();
@@ -35,10 +46,12 @@ class TaskController extends Controller
       return redirect('/');
     }
 
-    public function complete(Request $request, task $task){
-      $task->is_completed = $request->check;
+    public function complete(Request $request, $id){
+      Log::debug($request);
+      $task = Task::find($id);
+      $task->is_completed = $request[0];
       $task->save();
-      return redirect('/');
+      // return redirect('/');
     }
 
 

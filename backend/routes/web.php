@@ -18,7 +18,8 @@
 
 Route::get('/','TaskController@index');
 Route::resource('task','TaskController');
-Route::post('/complete','TaskController@complete');
+Route::post('/complete/{id}','TaskController@complete');
+
 
 
 
