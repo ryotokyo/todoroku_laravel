@@ -15,6 +15,15 @@
     <h1 class="top__title">ToDoリスト更新</h1>
   </header>
   <main>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        </div>
+    @endif
     <div class="todoEdit__container">
       <form action="{{ url('task', $task->id) }}" method="post">
         {{ csrf_field() }}

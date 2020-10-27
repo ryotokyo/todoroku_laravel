@@ -10,22 +10,26 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
   <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script
+    src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous"></script>
   </head>
   <body>
   <header>
     <h1 class="top__title">TODO録</h1>
   </header>
   <main>
-    
-@if ($errors->any())
-    <div class="alert alert-danger">
-    <ul>
+
+    @if ($errors->any())
+      <div class="alert alert-danger">
+        <ul>
         @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
         @endforeach
-    </ul>
-    </div>
-@endif
+        </ul>
+      </div>
+    @endif
     <div class="todoAdd__container">
       <h2 class="title">ToDoを追加する</h2>
       <form action="{{url('/task')}}" method="post">
@@ -40,21 +44,47 @@
       <h2 class="title">ToDoリスト</h2>
       <table class="table table-striped">
         <thead>
+          @if($tasks=='[]')
+
+          @else
           <tr>
             <th>完了</th>
             <th>タスク</th>
             <th></th>
             <th></th>
           </tr>
+          @endif
         </thead>
         <tbody>
-          @foreach($tasks as $task)
+          @forelse($tasks as $task)
+
           <tr>
             <!-- チェックボックス -->
             <td>
               <!-- <input type="hidden" name="check" value="{{$task->is_completed}}">
               <input type="checkbox" name="check" onclick="this.form.check.value=this.checked ? 1 : 0" > -->
-              <input type="checkbox" class="test1" name="check" id="{{$task->id}}" value="{{$task->is_completed}}" >
+              <input type="checkbox" class="todoTable__check" name="check" id="{{$task->id}}" value="{{$task->is_completed}}" >
+
+
+              <!-- {{$task->is_completed == '1' ? 'checked' : '' }} -->
+
+              <!-- <script>
+              if($("#{{$task->id}}").prop('checked')){
+                $("#{{$task->id}}").closest("tr").css("text-decoration", "line-through");
+              };
+              </script> -->
+
+              <script>
+              var checkedId = $("#{{$task->id}}").attr('id')
+              var finishFlag = $("#{{$task->id}}").val();
+              console.log(checkedId);
+              console.log(finishFlag);
+
+              if(finishFlag === "1" ){
+                $("#{{$task->id}}").prop("checked", true);
+                $("#{{$task->id}}").closest("tr").css("text-decoration", "line-through");
+              };
+              </script>
 
             </td>
 
@@ -87,7 +117,11 @@
               </form>
             </td>
           </tr>
-          @endforeach
+
+          @empty
+            <p>登録されているタスクがありません。</p>
+
+          @endforelse
         </tbody>
       </table>
 
@@ -99,10 +133,6 @@
   </footer>
   <!-- オプションのJavaScript -->
   <!-- 最初にjQuery、次にPopper.js、次にBootstrap JS -->
-  <script
-  src="https://code.jquery.com/jquery-3.5.1.min.js"
-  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-  crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
   <script src="{{ asset('/js/javascript.js')}}"></script>

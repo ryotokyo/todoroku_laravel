@@ -41,6 +41,16 @@ class TaskController extends Controller
     }
 
     public function update(Request $request, task $task){
+      // validation ここから追加
+      $rules = [
+        'title' => 'required'
+      ];
+      $message = [
+        'title.required' => ':attributeを入力してください。'
+      ];
+      $attr = ['title' => 'タスク'];
+      $this->validate($request, $rules, $message, $attr);
+      // ここまで追加
       $task->title = $request->title;
       $task->save();
       return redirect('/');
