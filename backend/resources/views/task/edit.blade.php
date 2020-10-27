@@ -12,7 +12,7 @@
   </head>
   <body>
   <header>
-    <h1 class="top__title">ToDoリスト更新</h1>
+    <h1 class="font-weight-bold">ToDoリスト更新</h1>
   </header>
   <main>
     @if ($errors->any())
@@ -24,13 +24,13 @@
         </ul>
         </div>
     @endif
-    <div class="todoEdit__container">
+    <div class="container">
       <form action="{{ url('task', $task->id) }}" method="post">
         {{ csrf_field() }}
         {{ method_field('patch') }}
-        <div class="todoEdit__form">
-          <label>タスクを更新します</label>
-          <input type="text" name="title" class="formField" value="{{ $task->title }}">
+        <div class="form-group">
+          <label>タスクを更新してください</label>
+          <input type="text" name="title" class="form-control" value="{{ $task->title }}">
         </div>
         <button type="button" onclick="history.back()" class="btn btn-secondary">戻る</button>
         <button type="submit" class="btn btn-primary">更新</button>

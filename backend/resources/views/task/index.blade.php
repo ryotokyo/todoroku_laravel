@@ -15,9 +15,10 @@
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
     crossorigin="anonymous"></script>
   </head>
+
   <body>
   <header>
-    <h1 class="top__title">TODO録</h1>
+    <h1 class="font-weight-bold">TODO録</h1>
   </header>
   <main>
 
@@ -30,18 +31,18 @@
         </ul>
       </div>
     @endif
-    <div class="todoAdd__container">
-      <h2 class="title">ToDoを追加する</h2>
+    <div class="container">
+      <h2 class="font-weight-bold">タスクを追加</h2>
       <form action="{{url('/task')}}" method="post">
         {{csrf_field()}}
-      <div class="todoAdd__form">
-        <input type="text" name="title" class="formField" placeholder="ToDoを追加してください">
+      <div class="form-group">
+        <input type="text" name="title" class="form-control" placeholder="タスクを追加してください">
       </div>
-      <button type="submit" class="btn btn-primary">Add</button>
+      <button type="submit" class="btn btn-primary">ADD</button>
       </form>
     </div>
-    <div class="todoTable__container">
-      <h2 class="title">ToDoリスト</h2>
+    <div class="container">
+      <h2 class="todoTable__title font-weight-bold">TODOリスト</h2>
       <table class="table table-striped">
         <thead>
           @if($tasks=='[]')
@@ -60,11 +61,14 @@
 
           <tr>
             <!-- チェックボックス -->
-            <td>
+            <td class="pl-3">
               <!-- <input type="hidden" name="check" value="{{$task->is_completed}}">
               <input type="checkbox" name="check" onclick="this.form.check.value=this.checked ? 1 : 0" > -->
-              <input type="checkbox" class="todoTable__check" name="check" id="{{$task->id}}" value="{{$task->is_completed}}" >
 
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" name="check" id="{{$task->id}}" value="{{$task->is_completed}}" >
+                <label class="custom-control-label" for="{{$task->id}}"></label>
+              </div>
 
               <!-- {{$task->is_completed == '1' ? 'checked' : '' }} -->
 
