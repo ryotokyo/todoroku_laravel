@@ -21,7 +21,6 @@
     <h1 class="font-weight-bold">TODO録</h1>
   </header>
   <main>
-
     @if ($errors->any())
       <div class="alert alert-danger">
         <ul>
@@ -66,7 +65,7 @@
               <input type="checkbox" name="check" onclick="this.form.check.value=this.checked ? 1 : 0" > -->
 
               <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" name="check" id="{{$task->id}}" value="{{$task->is_completed}}" >
+                <input type="checkbox" class="aaaa custom-control-input" name="check" id="{{$task->id}}" value="{{$task->is_completed}}" data-id="{{$task->id}}" data-completed="{{$task->is_completed}}">
                 <label class="custom-control-label" for="{{$task->id}}"></label>
               </div>
 
@@ -78,7 +77,7 @@
               };
               </script> -->
 
-              <script>
+              <!-- <script>
               var checkedId = $("#{{$task->id}}").attr('id')
               var finishFlag = $("#{{$task->id}}").val();
               console.log(checkedId);
@@ -88,7 +87,7 @@
                 $("#{{$task->id}}").prop("checked", true);
                 $("#{{$task->id}}").closest("tr").css("text-decoration", "line-through");
               };
-              </script>
+              </script> -->
 
             </td>
 
@@ -134,6 +133,7 @@
     </div>
   </main>
   <footer>
+    <!-- {{$tasks}} -->
   </footer>
   <!-- オプションのJavaScript -->
   <!-- 最初にjQuery、次にPopper.js、次にBootstrap JS -->

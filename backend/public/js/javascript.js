@@ -93,5 +93,45 @@ cmds[i].addEventListener('click', function(e) {
 })();
 
 
+// $(document).ready(function(e){
+var ary = $('.aaaa');
+// var taskId = ary[i].data();
+console.log(ary);
+for (i = 0; i < ary.length; i++) {
+  // var temp = ary[i].getAttribute('data-id');
+  var taskId = ary[i].dataset.id;
+  var doneId = ary[i].dataset.completed;
+
+  // var hoge = $("#29").data();
+  // console.log(hoge);
+
+  // var doneid = $('.aaaa').data('id');
+  console.log(taskId);
+  console.log(doneId);
+  console.log("#taskId");
+
+  if(doneId === "1" ){
+    $('#' + taskId).prop("checked", true);
+    $('#' + taskId).closest("tr").css("text-decoration", "line-through");
+  };
+}
+// });
+
+
+// var taskId = ary[i].id;
+
+// var ary = $('.aaaa').data();
+// console.log(ary);
+// for (i = 0; i < ary.length; i++) {
+//   // var temp = ary[i].data('data-id');
+//   // var doneid = $('.aaaa').data('id');
+//   console.log(ary[i]);
+//   // console.log(doneid);
+// }
+
+
+// var doneid = $('#29').data();
+// console.log(doneid);
+
 
 
