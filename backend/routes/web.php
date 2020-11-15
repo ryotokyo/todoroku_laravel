@@ -1,5 +1,8 @@
 <?php
 
+
+// use App\Http\Controllers\TaskController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,9 +19,13 @@
 //    return view('welcome');
 //});
 
+// dd(App\Http\Controllers\TaskController::class);
 Route::get('/','TaskController@index');
-Route::resource('task','TaskController');
+Route::resource('task',TaskController::class);
+// Route::resource('task', App\Http\Controllers\TaskController::class);
+// Route::resource('task', App\Http\Controllers\TaskController::class);
 Route::post('/complete/{id}','TaskController@complete');
+
 
 
 

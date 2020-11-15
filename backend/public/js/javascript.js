@@ -93,6 +93,8 @@ cmds[i].addEventListener('click', function(e) {
 })();
 
 
+//is_completedが1の場合は、完了済みで表示する
+
 // $(document).ready(function(e){
 var ary = $('.aaaa');
 // var taskId = ary[i].data();

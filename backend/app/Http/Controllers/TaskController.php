@@ -9,14 +9,31 @@ use App\Http\Requests\TaskRequest;
 
 class TaskController extends Controller
 {
+
+    private $task;
+
+    public function __construct(Task $task)
+    {
+        $this->task = $task;
+    }
+
+
+
     //追加
-    public function index() {
-      $tasks = Task::all();
+    public function index(Task $task) {
+      // $tasks = Task::all();
+      $tasks = $this->task->all();
     // return view('task.index')->with('tasks',$tasks);
     return view('task.index', compact('tasks'));
     }
 
-    public function store(TaskRequest $request) {
+
+    // public function __construct(Task $task){
+    //
+    // }
+    //
+
+    public function store(TaskRequest $request, Task $task) {
       // validation ここから追加
       // $rules = [
       //   'title' => 'required'
@@ -27,22 +44,23 @@ class TaskController extends Controller
       // $attr = ['title' => 'タスク'];
       // $this->validate($request, $rules, $message, $attr);
       // ここまで追加
-      $task = new Task();
+      // $task = new Task();
       $task->title = $request->title;
       $task->save();
       return redirect('/');
     }
 
-    public function destroy(task $task){
+    public function destroy(Task $task){
       $task->delete();
       return redirect('/');
     }
 
-    public function edit(task $task){
-      return view('task.edit')->with('task',$task);
+    public function edit(Task $task){
+      // return view('task.edit')->with('task',$task);
+      return view('task.edit', compact('task'));
     }
 
-    public function update(TaskRequest $request, task $task){
+    public function update(TaskRequest $request, Task $task){
       // validation ここから追加
       // $rules = [
       //   'title' => 'required'
@@ -58,9 +76,19 @@ class TaskController extends Controller
       return redirect('/');
     }
 
+    // public function complete(Request $request, $id){
+    //   Log::debug($request);
+    //   $task = Task::find($id);
+    //   $task->is_completed = $request[0];
+    //   $task->save();
+    //   // return redirect('/');
+    // }
+
     public function complete(Request $request, $id){
       Log::debug($request);
-      $task = Task::find($id);
+      // Log::debug($task);
+      // $task = Task::find($id);
+      $task = $this->task->find($id);
       $task->is_completed = $request[0];
       $task->save();
       // return redirect('/');

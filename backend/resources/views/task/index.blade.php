@@ -95,7 +95,9 @@
 
             <!-- 編集ボタン -->
             <td>
-              <form action="{{action('TaskController@edit', $task)}}" method="post">
+              <!-- <form action="{{action('TaskController@edit', $task)}}" method="post"> -->
+              <form action="{{route('task.edit', $task)}}" method="post">
+
               {{ csrf_field() }}
               {{ method_field('get') }}
               <button type="submit" class="btn btn-primary">編集</button>
