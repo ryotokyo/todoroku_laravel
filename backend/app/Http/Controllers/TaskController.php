@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Task;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\TaskRequest;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -46,6 +47,8 @@ class TaskController extends Controller
       // ここまで追加
       // $task = new Task();
       $task->title = $request->title;
+      // $task->user_id = Auth::user()->id;
+      $task->user_id = Auth::id();
       $task->save();
       return redirect('/');
     }
