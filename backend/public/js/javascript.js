@@ -1,4 +1,4 @@
-
+(function() {
 
 //is_completedが1の場合は、完了済みで表示する
 
@@ -75,46 +75,68 @@ $(":checkbox").click(function() {
 
 //削除時のポップアップ確認
 
-(function() {
+
 'use strict';
 
-var cmds = document.getElementsByClassName('del');
-var i;
+// var cmds = document.getElementsByClassName('del');
+// var cmds = $('.del');
+// var i;
 
-for (i = 0; i < cmds.length; i++) {
-cmds[i].addEventListener('click', function(e) {
-  e.preventDefault();
-  if (confirm('タスクを削除しますがよろしいですか？')) {
-    document.getElementById('form_' + this.dataset.id).submit();
-  }
-});
-}
+// for (i = 0; i < cmds.length; i++) {
+// cmds[i].addEventListener('click', function(e) {
+//   e.preventDefault();
+//   if (confirm('タスクを削除しますがよろしいですか？')) {
+//     document.getElementById('form_' + this.dataset.id).submit();
+//   }
+// });
+// }
 
-})();
+$('.del').each(function(i, delTask){
+  $(delTask).on('click', function(e) {
+    // e.preventDefault();
+    // console.log(delTask);
+    // console.log(`form_${$(delTask).data('id')}`);
+    if (confirm('タスクを削除しますがよろしいですか？')) {
+      $(`#form_${$(delTask).data('id')}`).submit();
+    }
+  });
+})
+
 
 
 // $(document).ready(function(e){
-var ary = $('.aaaa');
+// var ary = $('.aaaa');
 // var taskId = ary[i].data();
-console.log(ary);
-for (i = 0; i < ary.length; i++) {
-  // var temp = ary[i].getAttribute('data-id');
-  var taskId = ary[i].dataset.id;
-  var doneId = ary[i].dataset.completed;
+// console.log(ary);
+$('.aaaa').each(function(index, input){
+  var taskId = $(input).data('id');
+  var doneId = $(input).data('completed');
+  // console.log(input);
+
+  if(doneId === 1 ){
+    $('#' + taskId).prop("checked", true);
+    $('#' + taskId).closest("tr").css("text-decoration", "line-through");
+    };
+})
+// for (i = 0; i < ary.length; i++) {
+//   // var temp = ary[i].getAttribute('data-id');
+//   var taskId = ary[i].dataset.id;
+//   var doneId = ary[i].dataset.completed;
 
   // var hoge = $("#29").data();
   // console.log(hoge);
 
   // var doneid = $('.aaaa').data('id');
-  console.log(taskId);
-  console.log(doneId);
-  console.log("#taskId");
+  // console.log($(ary[i]).data('id'));
+  // console.log(taskId);
+  // console.log(doneId);
+  // console.log("#taskId");
 
-  if(doneId === "1" ){
-    $('#' + taskId).prop("checked", true);
-    $('#' + taskId).closest("tr").css("text-decoration", "line-through");
-  };
-}
+  // if(doneId === "1" ){
+  //   $('#' + taskId).prop("checked", true);
+  //   $('#' + taskId).closest("tr").css("text-decoration", "line-through");
+  // };
+// }
 // });
 
 
@@ -133,5 +155,5 @@ for (i = 0; i < ary.length; i++) {
 // var doneid = $('#29').data();
 // console.log(doneid);
 
-
+})();
 
