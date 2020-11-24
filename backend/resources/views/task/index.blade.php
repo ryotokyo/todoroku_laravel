@@ -32,6 +32,7 @@
           <tr>
             <th>完了</th>
             <th>タスク</th>
+            <th>名前</th>
             <th></th>
             <th></th>
           </tr>
@@ -48,6 +49,9 @@
               </div>
             </td>
             <td>{{$task->title}}</td>
+            <td>
+              {{$task->user_id}}
+            </td>
             <td>
               <form action="{{route('task.edit', $task)}}" method="post">
               {{ csrf_field() }}
