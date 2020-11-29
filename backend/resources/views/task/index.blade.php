@@ -50,7 +50,7 @@
             </td>
             <td>{{$task->title}}</td>
             <td>
-              {{$task->user_id}}
+              {{ optional($task->user)->name }}
             </td>
             <td>
               <form action="{{route('task.edit', $task)}}" method="post">
