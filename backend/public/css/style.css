@@ -11,9 +11,11 @@ p {
 }
 
 header {
-  margin: 40px auto 30px auto;
+  /* margin: 40px auto 30px auto; */
   text-align: center;
 }
+
+
 
 footer{
 
@@ -21,6 +23,10 @@ footer{
 
 
 /* ======= Layout ======= */
+
+.header__h1 {
+  margin: 20px auto;
+}
 
 .todoTable__title {
   margin-top: 40px;
