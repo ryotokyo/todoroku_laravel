@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Task;
+use App\Group;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\TaskRequest;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +16,7 @@ class TaskController extends Controller
 
     public function __construct(Task $task)
     {
+        $this->middleware('auth');
         $this->task = $task;
     }
 
@@ -23,9 +25,15 @@ class TaskController extends Controller
     //追加
     public function index(Task $task) {
       // $tasks = Task::all();
-      $tasks = $this->task->all();
+      $userId = Auth::user()->id;
+      // $tasks = Task::where('user_id', $userId);
+      // $tasks = $this->task->all();
+      $tasks = $this->task->where('user_id', $userId)->get();
+      // $groups = $this->group->all();
+      $groups = Group::all();
+      Log::debug($groups);
     // return view('task.index')->with('tasks',$tasks);
-    return view('task.index', compact('tasks'));
+    return view('task.index', compact('tasks','groups'));
     }
 
 
@@ -49,6 +57,7 @@ class TaskController extends Controller
       $task->title = $request->title;
       // $task->user_id = Auth::user()->id;
       $task->user_id = Auth::id();
+      $task->group_id = $request->group;
       $task->save();
       return redirect('/');
     }

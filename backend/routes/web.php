@@ -28,9 +28,8 @@ Route::post('/complete/{id}','TaskController@complete');
 
 
 
-
-
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+

@@ -14,11 +14,20 @@
       </div>
     @endif
     <div class="container">
-      <h2 class="font-weight-bold">タスクを追加</h2>
       <form action="{{url('/task')}}" method="post">
         {{csrf_field()}}
       <div class="form-group">
+      <h2 class="font-weight-bold">タスクを追加</h2>
         <input type="text" name="title" class="form-control" placeholder="タスクを追加してください">
+      </div>
+      <div class="form-group">
+        <h5>グループを選択</h5>
+        <select class="form-control col-3" name="group">
+            <option value="0">未選択</option>
+          @foreach($groups as $group)
+            <option value="{{$group->id}}">{{$group->group_name}}</option>
+          @endforeach
+        </select>
       </div>
       <button type="submit" class="btn btn-primary">ADD</button>
       </form>
@@ -32,6 +41,7 @@
           <tr>
             <th>完了</th>
             <th>タスク</th>
+            <th>グループ</th>
             <th>名前</th>
             <th></th>
             <th></th>
@@ -49,6 +59,9 @@
               </div>
             </td>
             <td>{{$task->title}}</td>
+            <td>
+              {{ optional($task->group)->group_name }}
+            </td>
             <td>
               {{ optional($task->user)->name }}
             </td>
