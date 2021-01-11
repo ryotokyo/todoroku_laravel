@@ -20,17 +20,41 @@
       <h2 class="font-weight-bold">タスクを追加</h2>
         <input type="text" name="title" class="form-control" placeholder="タスクを追加してください">
       </div>
+
+      <div class="row">
+      <div class="col-3 mr-5">
       <div class="form-group">
         <h5>グループを選択</h5>
-        <select class="form-control col-3" name="group">
+        <select class="form-control" name="group">
             <option value="0">未選択</option>
           @foreach($groups as $group)
-            <option value="{{$group->id}}">{{$group->group_name}}</option>
+            <option value="{{$group->id}}">{{$group->name}}</option>
           @endforeach
         </select>
       </div>
-      <button type="submit" class="btn btn-primary">ADD</button>
+
+      <button type="submit" class="btn btn-primary">TODO追加</button>
       </form>
+      </div>
+
+      <!-- <div class="col-1">
+      </div> -->
+      <!-- グループ追加 開始 -->
+      <div class="col-4">
+      <div class="form-group">
+        <form action="{{url('/group')}}" method="post">
+          {{csrf_field()}}
+        <div class="form-group">
+        <h5>新規グループを作成</h5>
+          <input type="text" name="name" class="form-control" placeholder="グループ名を入力してください">
+        </div>
+        <button type="submit" class="btn btn-primary">グループ追加</button>
+        </form>
+      </div>
+      </div>
+    </div>
+    </div>
+      <!-- グループ追加 終了 -->
     </div>
     <div class="container">
       <h2 class="todoTable__title font-weight-bold">TODOリスト</h2>
@@ -60,7 +84,7 @@
             </td>
             <td>{{$task->title}}</td>
             <td>
-              {{ optional($task->group)->group_name }}
+              {{ optional($task->group)->name }}
             </td>
             <td>
               {{ optional($task->user)->name }}
