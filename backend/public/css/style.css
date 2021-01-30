@@ -28,9 +28,17 @@ footer{
   margin: 20px auto;
 }
 
+.header__h1{
+  text-decoration: none;
+}
+
 .todoTable__title {
   margin-top: 40px;
 
+}
+
+a {
+  text-decoration: none;
 }
 
 /* ======= Module ======= */

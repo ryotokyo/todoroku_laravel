@@ -67,7 +67,9 @@
             </div>
         </div>
     </nav>
+    <a class="text-dark text-decoration-none" href="{{ url('/') }}">
     <h1 class="header__h1 font-weight-bold">@yield('pageTitle')</h1>
+    </a>
     </header>
     @yield('content')
     @yield(`footer`)

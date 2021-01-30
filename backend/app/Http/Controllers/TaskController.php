@@ -23,17 +23,36 @@ class TaskController extends Controller
 
 
     //追加
-    public function index(Task $task) {
+    public function index(Request $request, Task $task) {
       // $tasks = Task::all();
       $userId = Auth::user()->id;
+      $groupId = $request->group_id;
       // $tasks = Task::where('user_id', $userId);
       // $tasks = $this->task->all();
-      $tasks = $this->task->where('user_id', $userId)->get();
+
+      // $query = $this->task->where('user_id', $userId);
+      //
+      // if(!empty($groupId)) {
+      //   $query->where('group_id', $groupId);
+      // }
+
+      // $tasks = $task->getLoginUserTasks($groupId);
+
+      $tasks = $task->userId($userId)->groupId($groupId)->get();
+
+      // dd($tasks);
+
+      Log::debug($userId);
+      Log::debug($groupId);
+
+      // $tasks = $this->task->where('user_id', $userId)->get();
       // $groups = $this->group->all();
-      $groups = Group::all();
-      Log::debug($groups);
+      // $groups = Group::all();
+      // Log::debug($groups);
+      // Log::debug($groupId);
     // return view('task.index')->with('tasks',$tasks);
-    return view('task.index', compact('tasks','groups'));
+    // return view('task.index', compact('tasks','groups'));
+    return view('task.index', compact('tasks'));
     }
 
 
@@ -68,8 +87,11 @@ class TaskController extends Controller
     }
 
     public function edit(Task $task){
+      // $groups = Group::all();
+      $groupSelected = $task->group_id;
       // return view('task.edit')->with('task',$task);
-      return view('task.edit', compact('task'));
+      // return view('task.edit', compact('task','groups','groupSelected'));
+      return view('task.edit', compact('task','groupSelected'));
     }
 
     public function update(TaskRequest $request, Task $task){
@@ -84,6 +106,7 @@ class TaskController extends Controller
       // $this->validate($request, $rules, $message, $attr);
       // ここまで追加
       $task->title = $request->title;
+      $task->group_id = $request->group;
       $task->save();
       return redirect('/');
     }

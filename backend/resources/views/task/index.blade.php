@@ -84,7 +84,8 @@
             </td>
             <td>{{$task->title}}</td>
             <td>
-              {{ optional($task->group)->name }}
+              <a href="{{route('task.index',['group_id'=>$task->group_id])}}">{{ optional($task->group)->name }}</a>
+              <!-- <a href="{{url('/?group_id='.$task->group_id)}}">{{ optional($task->group)->name }}</a> -->
             </td>
             <td>
               {{ optional($task->user)->name }}

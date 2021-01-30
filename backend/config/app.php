@@ -175,6 +175,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // VewComposer用
+        App\Providers\ViewComposerServiceProvider::class,
+
     ],
 
     /*
