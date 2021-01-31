@@ -39,7 +39,7 @@ class TaskController extends Controller
       // $tasks = $task->getLoginUserTasks($groupId);
 
       $tasks = $task->userId($userId)->groupId($groupId)->get();
-
+      \Debugbar::info($tasks);
       // dd($tasks);
 
       Log::debug($userId);
