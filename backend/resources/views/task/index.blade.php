@@ -66,7 +66,7 @@
             <th>完了</th>
             <th>タスク</th>
             <th>グループ</th>
-            <th>名前</th>
+            <!-- <th>名前</th> -->
             <th></th>
             <th></th>
           </tr>
@@ -87,9 +87,9 @@
               <a href="{{route('task.index',['group_id'=>$task->group_id])}}">{{ optional($task->group)->name }}</a>
               <!-- <a href="{{url('/?group_id='.$task->group_id)}}">{{ optional($task->group)->name }}</a> -->
             </td>
-            <td>
+            <!-- <td>
               {{ optional($task->user)->name }}
-            </td>
+            </td> -->
             <td>
               <form action="{{route('task.edit', $task)}}" method="post">
               {{ csrf_field() }}
