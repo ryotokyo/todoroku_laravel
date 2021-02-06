@@ -69,8 +69,8 @@ $(":checkbox").click(function() {
         }).always(function() {
             // 成否に関わらず実行されるコールバック
     		});
-});
 
+});
 
 
 //削除時のポップアップ確認
@@ -156,4 +156,5 @@ $('.aaaa').each(function(index, input){
 // console.log(doneid);
 
 })();
+
 
