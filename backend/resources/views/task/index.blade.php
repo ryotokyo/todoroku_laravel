@@ -1,7 +1,7 @@
 @extends('layout.common')
 
 @section('title', 'TODO録')
-@section('pageTitle', '【テスト】TODO録')
+@section('pageTitle', '【仮】TODO録')
 @section('content')
   <main>
     @if ($errors->any())
